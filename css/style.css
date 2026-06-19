@@ -1,3 +1,6 @@
+/* ==========================================================================
+   0. VARIABEL WARNA & TEMA (GLOBAL VARIABLES)
+   ========================================================================== */
 :root {
     --bg-color: #0f0f11;
     --text-color: #f3f4f6;
@@ -18,11 +21,15 @@
     --loading-bg: #fafafa;
 }
 
+/* ==========================================================================
+   1. RESET & STANDARISASI DASAR (CSS RESET)
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    /* Transisi global hanya untuk warna background dan teks saja */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -33,67 +40,9 @@ body {
     min-height: 100vh;
 }
 
-/* Loading Screen & Kubus 3D */
-#loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--loading-bg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-#loading-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-.cube-wrapper {
-    width: 80px;
-    height: 80px;
-    perspective: 400px;
-    margin-bottom: 30px;
-}
-.cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotateCube 4s infinite linear;
-}
-.cube-face {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-}
-body[data-theme="light"] .cube-face {
-    background: rgba(0, 0, 0, 0.05);
-    border: 2px solid rgba(0, 0, 0, 0.4);
-}
-.front  { transform: translateZ(40px); }
-.back   { transform: rotateY(180deg) translateZ(40px); }
-.left   { transform: rotateY(-90deg) translateZ(40px); }
-.right  { transform: rotateY(90deg) translateZ(40px); }
-.top    { transform: rotateX(90deg) translateZ(40px); }
-.bottom { transform: rotateX(-90deg) translateZ(40px); }
-
-@keyframes rotateCube {
-    0% { transform: rotateX(0deg) rotateY(0deg); }
-    100% { transform: rotateX(360deg) rotateY(360deg); }
-}
-.loading-text { font-size: 24px; font-weight: 700; letter-spacing: 4px; margin-bottom: 10px; }
-.loading-sub { font-size: 13px; color: var(--sub-text); }
-
-/* Controls Nav & Theme Switcher */
+/* ==========================================================================
+   2. INTERFACE UTAMA, NAVIGASI & KONTROL ATAS
+   ========================================================================== */
 .top-controls {
     position: fixed;
     top: 20px;
@@ -105,6 +54,7 @@ body[data-theme="light"] .cube-face {
     padding: 0 30px;
     z-index: 100;
 }
+
 .nav-menu {
     display: flex;
     background: var(--card-bg);
@@ -112,6 +62,7 @@ body[data-theme="light"] .cube-face {
     padding: 4px;
     border-radius: 30px;
 }
+
 .nav-btn {
     background: transparent;
     border: none;
@@ -121,11 +72,14 @@ body[data-theme="light"] .cube-face {
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
+    transition: all 0.2s ease;
 }
+
 .nav-btn.active {
     background: var(--accent-color);
     color: #ffffff;
 }
+
 .theme-toggle {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -139,61 +93,100 @@ body[data-theme="light"] .cube-face {
     align-items: center;
 }
 
-/* Page Display System */
-.page-section { display: none; }
-.page-section.active { display: block; }
+/* Sistem Ganti Halaman */
+.page-section { 
+    display: none; 
+}
+.page-section.active { 
+    display: block; 
+}
 
-/* Layout Grid Utama */
 .container {
     max-width: 700px;
     margin: 0 auto;
     padding: 100px 20px;
 }
-.profile-header {
-    text-align: center;
-    margin-bottom: 40px;
+
+/* ==========================================================================
+   3. ANIMASI 3D LOADING SCREEN (CUBE EFFECT)
+   ========================================================================== */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--loading-bg);
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-.profile-name { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-.verified-badge { color: #3b82f6; }
-.ai-avatar-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--accent-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 32px;
-    margin-bottom: 15px;
+    align-items: center;
+    z-index: 9999;
 }
 
-/* Sections & Texts Box */
-.section { margin-bottom: 45px; }
-.section-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    border-left: 4px solid var(--accent-color);
-    padding-left: 10px;
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-.about-text {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--sub-text);
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
+
+.cube-wrapper {
+    width: 80px;
+    height: 80px;
+    perspective: 400px;
+    margin-bottom: 30px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 4s infinite linear;
+}
+
+.cube-face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+body[data-theme="light"] .cube-face {
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.front  { transform: translateZ(40px); }
+.back   { transform: rotateY(180deg) translateZ(40px); }
+.left   { transform: rotateY(-90deg) translateZ(40px); }
+.right  { transform: rotateY(90deg) translateZ(40px); }
+.top    { transform: rotateX(90deg) translateZ(40px); }
+.bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+@keyframes rotateCube {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.loading-text { 
+    font-size: 24px; 
+    font-weight: 700; 
+    letter-spacing: 4px; 
+    margin-bottom: 10px; 
+}
+
+.loading-sub { 
+    font-size: 13px; 
+    color: var(--sub-text); 
 }
 
 /* ==========================================================================
-   PREMIUM HERO & LANYARD DRAG LAYOUT
+   4. PREMIUM HERO SECTION LAYOUT
    ========================================================================== */
 .fw-hero-section {
     position: relative;
@@ -204,6 +197,7 @@ body[data-theme="light"] .cube-face {
     flex-direction: column;
     justify-content: flex-start;
 }
+
 .fw-hero-bg-text {
     position: absolute;
     top: 10px;
@@ -218,8 +212,16 @@ body[data-theme="light"] .cube-face {
     pointer-events: none;
     user-select: none;
 }
-[data-theme="light"] .fw-hero-bg-text { color: rgba(0, 0, 0, 0.02); }
-.fw-hero-wrap { position: relative; z-index: 1; }
+
+[data-theme="light"] .fw-hero-bg-text { 
+    color: rgba(0, 0, 0, 0.02); 
+}
+
+.fw-hero-wrap { 
+    position: relative; 
+    z-index: 1; 
+}
+
 .fw-hero-top {
     display: flex;
     justify-content: space-between;
@@ -229,7 +231,11 @@ body[data-theme="light"] .cube-face {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.fw-profile-logo-wrap { margin-bottom: 15px; }
+
+.fw-profile-logo-wrap { 
+    margin-bottom: 15px; 
+}
+
 .fw-main-logo {
     width: 90px;
     height: 90px;
@@ -238,6 +244,7 @@ body[data-theme="light"] .cube-face {
     border: 3px solid var(--accent-color);
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
+
 .fw-hero-display {
     font-size: 54px;
     font-weight: 800;
@@ -245,13 +252,22 @@ body[data-theme="light"] .cube-face {
     letter-spacing: -1px;
     margin-bottom: 20px;
 }
-.fw-hero-line { display: block; }
+
+.fw-hero-line { 
+    display: block; 
+}
+
 .fw-hero-line-italic {
     font-style: italic;
     font-weight: 300;
     color: var(--sub-text);
 }
-.fw-hero-tagline { max-width: 480px; margin-bottom: 30px; }
+
+.fw-hero-tagline { 
+    max-width: 480px; 
+    margin-bottom: 30px; 
+}
+
 .fw-hero-role {
     display: inline-block;
     font-size: 13px;
@@ -261,7 +277,13 @@ body[data-theme="light"] .cube-face {
     margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
-.fw-hero-sub { font-size: 15px; line-height: 1.6; color: var(--sub-text); }
+
+.fw-hero-sub { 
+    font-size: 15px; 
+    line-height: 1.6; 
+    color: var(--sub-text); 
+}
+
 .fw-hero-bottom {
     display: flex;
     justify-content: space-between;
@@ -272,11 +294,30 @@ body[data-theme="light"] .cube-face {
     padding-bottom: 25px;
     margin-bottom: 40px;
 }
-.fw-hero-status { display: flex; align-items: center; gap: 8px; }
-.fw-hero-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; }
-.fw-hero-scroll { display: flex; align-items: center; gap: 5px; }
 
-/* Sandbox Lanyard Arena */
+.fw-hero-status { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.fw-hero-dot { 
+    width: 8px; 
+    height: 8px; 
+    background: #22c55e; 
+    border-radius: 50%; 
+    display: inline-block; 
+}
+
+.fw-hero-scroll { 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+/* ==========================================================================
+   5. INTERACTIVE SANDBOX & FISIKA LANYARD DRAG
+   ========================================================================== */
 .fw-lanyard-scene {
     position: relative;
     width: 100%;
@@ -286,6 +327,7 @@ body[data-theme="light"] .cube-face {
     border-radius: 20px;
     overflow: hidden;
 }
+
 .sandbox-hint {
     position: absolute;
     top: 15px;
@@ -295,6 +337,7 @@ body[data-theme="light"] .cube-face {
     z-index: 5;
     pointer-events: none;
 }
+
 .fw-lanyard-svg {
     position: absolute;
     top: 0;
@@ -303,9 +346,13 @@ body[data-theme="light"] .cube-face {
     height: 100%;
     pointer-events: none;
 }
-.fw-strap-text { letter-spacing: 2px; text-transform: uppercase; }
 
-/* Premium Draggable Card */
+.fw-strap-text { 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+}
+
+/* KARTU ID BADGE PREMIUM (PENTING: Tanpa CSS Transition Koordinat) */
 .fw-avatar-card {
     position: absolute;
     width: 210px;
@@ -317,8 +364,17 @@ body[data-theme="light"] .cube-face {
     cursor: grab;
     user-select: none;
     z-index: 10;
+    /* CRITICAL: JANGAN PERNAH menambahkan transition top atau left di sini, 
+       karena akan membuat kalkulasi fisika pegas/letoy JS crash dan patah-patah! */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
-.fw-avatar-card:active { cursor: grabbing; }
+
+.fw-avatar-card:active { 
+    cursor: grabbing;
+    transform: scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
 .fw-card-clip {
     width: 30px;
     height: 12px;
@@ -327,6 +383,7 @@ body[data-theme="light"] .cube-face {
     border-radius: 0 0 4px 4px;
     border: 1px solid rgba(0,0,0,0.1);
 }
+
 .fw-card-head {
     display: flex;
     justify-content: space-between;
@@ -336,6 +393,7 @@ body[data-theme="light"] .cube-face {
     margin-bottom: 12px;
     text-transform: uppercase;
 }
+
 .fw-card-photo {
     width: 100%;
     height: 125px;
@@ -345,9 +403,31 @@ body[data-theme="light"] .cube-face {
     margin-bottom: 12px;
     border: 1px solid rgba(0,0,0,0.05);
 }
-.fw-card-photo img { width: 100%; height: 100%; object-fit: cover; }
-.fw-card-name { font-size: 18px; font-weight: 800; text-align: center; margin-bottom: 2px; letter-spacing: -0.5px; }
-.fw-card-role { font-size: 11px; font-weight: 600; text-align: center; color: #5a5854; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+
+.fw-card-photo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.fw-card-name { 
+    font-size: 18px; 
+    font-weight: 800; 
+    text-align: center; 
+    margin-bottom: 2px; 
+    letter-spacing: -0.5px; 
+}
+
+.fw-card-role { 
+    font-size: 11px; 
+    font-weight: 600; 
+    text-align: center; 
+    color: #5a5854; 
+    text-transform: uppercase; 
+    margin-bottom: 12px; 
+    letter-spacing: 0.5px; 
+}
+
 .fw-card-foot {
     font-size: 10px;
     font-weight: 700;
@@ -359,10 +439,47 @@ body[data-theme="light"] .cube-face {
     align-items: center;
     gap: 6px;
 }
-.fw-card-dot { width: 6px; height: 6px; background: #2b6636; border-radius: 50%; }
 
-/* Social Media & List Links */
-.social-list { display: flex; flex-direction: column; gap: 12px; }
+.fw-card-dot { 
+    width: 6px; 
+    height: 6px; 
+    background: #2b6636; 
+    border-radius: 50%; 
+}
+
+/* ==========================================================================
+   6. BAGIAN KONTEN HALAMAN HOME (MANIFESTO & SOSMED)
+   ========================================================================== */
+.section { 
+    margin-bottom: 45px; 
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+.about-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--sub-text);
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.social-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
 .social-card {
     display: flex;
     align-items: center;
@@ -373,16 +490,71 @@ body[data-theme="light"] .cube-face {
     border-radius: 12px;
     text-decoration: none;
     color: var(--text-color);
+    transform: translateY(0);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
-.social-card:hover { border-color: var(--accent-color); transform: translateY(-1px); }
-.social-info { display: flex; align-items: center; gap: 12px; font-weight: 600; }
-.social-handle { font-size: 13px; color: var(--sub-text); }
-.flex-center { display: flex; align-items: center; gap: 8px; }
-.arrow-icon { font-size: 12px; color: var(--sub-text); }
+
+.social-card:hover { 
+    border-color: var(--accent-color); 
+    transform: translateY(-2px); 
+}
+
+.social-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    font-weight: 600; 
+}
+
+.social-handle { 
+    font-size: 13px; 
+    color: var(--sub-text); 
+}
+
+.flex-center { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.arrow-icon { 
+    font-size: 12px; 
+    color: var(--sub-text); 
+}
 
 /* ==========================================================================
-   AI INTERFACE UI CHATBOX
+   7. INTERFACE ANTARMUKA CHATBOX (VANZZ AI SYSTEM)
    ========================================================================== */
+.profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-name { 
+    font-size: 26px; 
+    font-weight: 700; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.ai-avatar-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
 .chat-container {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -391,7 +563,9 @@ body[data-theme="light"] .cube-face {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
+
 .chat-box {
     flex: 1;
     padding: 20px;
@@ -400,6 +574,7 @@ body[data-theme="light"] .cube-face {
     flex-direction: column;
     gap: 12px;
 }
+
 .chat-msg {
     max-width: 80%;
     padding: 12px 16px;
@@ -407,19 +582,28 @@ body[data-theme="light"] .cube-face {
     font-size: 14px;
     line-height: 1.5;
     word-break: break-word;
+    animation: msgFadeIn 0.25s ease-out forwards;
 }
+
+@keyframes msgFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .chat-msg.bot {
     background: var(--border-color);
     color: var(--text-color);
     align-self: flex-start;
     border-top-left-radius: 2px;
 }
+
 .chat-msg.user {
     background: var(--accent-color);
     color: #ffffff;
     align-self: flex-end;
     border-top-right-radius: 2px;
 }
+
 .chat-input-area {
     display: flex;
     padding: 15px;
@@ -427,6 +611,7 @@ body[data-theme="light"] .cube-face {
     background: rgba(0,0,0,0.1);
     gap: 10px;
 }
+
 #chat-input {
     flex: 1;
     background: var(--bg-color);
@@ -435,8 +620,13 @@ body[data-theme="light"] .cube-face {
     border-radius: 8px;
     color: var(--text-color);
     outline: none;
+    font-size: 14px;
 }
-#chat-input:focus { border-color: var(--accent-color); }
+
+#chat-input:focus { 
+    border-color: var(--accent-color); 
+}
+
 #send-btn {
     background: var(--accent-color);
     border: none;
@@ -444,5 +634,13 @@ body[data-theme="light"] .cube-face {
     width: 45px;
     border-radius: 8px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
 }
-#send-btn:hover { opacity: 0.9; }
+
+#send-btn:hover { 
+    opacity: 0.9; 
+}
