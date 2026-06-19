@@ -6,9 +6,6 @@
     --sub-text: #9ca3af;
     --border-color: #2e2e38;
     --loading-bg: #050505;
-    --nametag-bg: #e5e0d8;
-    --nametag-text: #2c2b29;
-    --nametag-sub: #5a5854;
 }
 
 [data-theme="light"] {
@@ -36,9 +33,7 @@ body {
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   LOADING SCREEN KUBUS ANIMASI 3D
-   ========================================================================== */
+/* Loading Screen & Kubus 3D */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -98,9 +93,7 @@ body[data-theme="light"] .cube-face {
 .loading-text { font-size: 24px; font-weight: 700; letter-spacing: 4px; margin-bottom: 10px; }
 .loading-sub { font-size: 13px; color: var(--sub-text); }
 
-/* ==========================================================================
-   MENU NAVIGASI & THEME TOGGLE (MATAHARI / BULAN)
-   ========================================================================== */
+/* Controls Nav & Theme Switcher */
 .top-controls {
     position: fixed;
     top: 20px;
@@ -146,15 +139,11 @@ body[data-theme="light"] .cube-face {
     align-items: center;
 }
 
-/* Sembunyikan/Tampilkan Halaman */
-.page-section {
-    display: none;
-}
-.page-section.active {
-    display: block;
-}
+/* Page Display System */
+.page-section { display: none; }
+.page-section.active { display: block; }
 
-/* Layout Konten Utama */
+/* Layout Grid Utama */
 .container {
     max-width: 700px;
     margin: 0 auto;
@@ -167,17 +156,8 @@ body[data-theme="light"] .cube-face {
     flex-direction: column;
     align-items: center;
 }
-.profile-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--accent-color);
-    margin-bottom: 15px;
-}
 .profile-name { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-.verified-badge { color: #3b82f6; font-size: 18px; }
-
+.verified-badge { color: #3b82f6; }
 .ai-avatar-icon {
     width: 80px;
     height: 80px;
@@ -191,9 +171,7 @@ body[data-theme="light"] .cube-face {
     margin-bottom: 15px;
 }
 
-/* ==========================================================================
-   SECTION & ELEMENT TEKS
-   ========================================================================== */
+/* Sections & Texts Box */
 .section { margin-bottom: 45px; }
 .section-title {
     font-size: 18px;
@@ -215,72 +193,175 @@ body[data-theme="light"] .cube-face {
 }
 
 /* ==========================================================================
-   SANDBOX AREA DRAGGABLE ID NAME TAG
+   PREMIUM HERO & LANYARD DRAG LAYOUT
    ========================================================================== */
-.nametag-sandbox {
+.fw-hero-section {
+    position: relative;
     width: 100%;
-    height: 420px;
+    min-height: 780px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.fw-hero-bg-text {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 105px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+[data-theme="light"] .fw-hero-bg-text { color: rgba(0, 0, 0, 0.02); }
+.fw-hero-wrap { position: relative; z-index: 1; }
+.fw-hero-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--sub-text);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.fw-profile-logo-wrap { margin-bottom: 15px; }
+.fw-main-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.fw-hero-display {
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+}
+.fw-hero-line { display: block; }
+.fw-hero-line-italic {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--sub-text);
+}
+.fw-hero-tagline { max-width: 480px; margin-bottom: 30px; }
+.fw-hero-role {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+.fw-hero-sub { font-size: 15px; line-height: 1.6; color: var(--sub-text); }
+.fw-hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--sub-text);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+}
+.fw-hero-status { display: flex; align-items: center; gap: 8px; }
+.fw-hero-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; }
+.fw-hero-scroll { display: flex; align-items: center; gap: 5px; }
+
+/* Sandbox Lanyard Arena */
+.fw-lanyard-scene {
+    position: relative;
+    width: 100%;
+    height: 480px;
     background: var(--card-bg);
     border: 1px dashed var(--border-color);
-    border-radius: 16px;
-    position: relative;
+    border-radius: 20px;
     overflow: hidden;
 }
 .sandbox-hint {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 15px;
+    left: 15px;
     font-size: 11px;
     color: var(--sub-text);
+    z-index: 5;
+    pointer-events: none;
 }
-.nametag-container {
-    width: 210px;
+.fw-lanyard-svg {
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.fw-strap-text { letter-spacing: 2px; text-transform: uppercase; }
+
+/* Premium Draggable Card */
+.fw-avatar-card {
+    position: absolute;
+    width: 210px;
+    background: #e5e0d8;
+    color: #2c2b29;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     cursor: grab;
     user-select: none;
+    z-index: 10;
+}
+.fw-avatar-card:active { cursor: grabbing; }
+.fw-card-clip {
+    width: 30px;
+    height: 12px;
+    background: #a39a86;
+    margin: -16px auto 12px auto;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.fw-card-head {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    font-size: 9px;
+    font-weight: 700;
+    color: #5a5854;
+    margin-bottom: 12px;
+    text-transform: uppercase;
 }
-.nametag-lanyard {
-    width: 55px;
-    height: 70px;
-    border: 8px solid #2c2b29;
-    border-bottom: none;
-    border-top-left-radius: 35px;
-    border-top-right-radius: 35px;
-    margin-bottom: -12px;
-    position: relative;
-}
-.nametag-clip {
-    width: 20px;
-    height: 10px;
-    background: #9ca3af;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.nametag-card {
+.fw-card-photo {
     width: 100%;
-    background-color: var(--nametag-bg);
-    color: var(--nametag-text);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    height: 125px;
+    background: #1f1d18;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
 }
-.nametag-id { font-size: 9px; color: var(--nametag-sub); margin-bottom: 10px; }
-.nametag-avatar { width: 110px; height: 110px; border-radius: 6px; object-fit: cover; margin-bottom: 10px; }
-.nametag-title { font-size: 16px; font-weight: 700; }
-.nametag-role { font-size: 11px; color: var(--nametag-sub); text-transform: uppercase; margin-bottom: 10px; }
-.nametag-divider { border: none; border-top: 1px dashed rgba(0,0,0,0.15); margin-bottom: 10px; }
-.nametag-status { font-size: 10px; color: #2b6636; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 5px; }
-.status-dot { width: 6px; height: 6px; background: #2b6636; border-radius: 50%; }
+.fw-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+.fw-card-name { font-size: 18px; font-weight: 800; text-align: center; margin-bottom: 2px; letter-spacing: -0.5px; }
+.fw-card-role { font-size: 11px; font-weight: 600; text-align: center; color: #5a5854; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+.fw-card-foot {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2b6636;
+    border-top: 1px dashed rgba(0,0,0,0.15);
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.fw-card-dot { width: 6px; height: 6px; background: #2b6636; border-radius: 50%; }
 
-/* ==========================================================================
-   SOSIAL MEDIA & WHATSAPP MENU LIST
-   ========================================================================== */
+/* Social Media & List Links */
 .social-list { display: flex; flex-direction: column; gap: 12px; }
 .social-card {
     display: flex;
@@ -300,7 +381,7 @@ body[data-theme="light"] .cube-face {
 .arrow-icon { font-size: 12px; color: var(--sub-text); }
 
 /* ==========================================================================
-   HALAMAN AI CHAT INTERFACE
+   AI INTERFACE UI CHATBOX
    ========================================================================== */
 .chat-container {
     background: var(--card-bg);
@@ -365,4 +446,3 @@ body[data-theme="light"] .cube-face {
     cursor: pointer;
 }
 #send-btn:hover { opacity: 0.9; }
-
