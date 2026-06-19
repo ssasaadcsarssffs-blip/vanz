@@ -1,197 +1,139 @@
-<!DOCTYPE html>  
-<html lang="id">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Vanz Yang Katanya Dev</title>  
-<link rel="stylesheet" href="css/style.css">  
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">  
-</head>  
-<body>  
-<div class="moon"></div>  
-<div class="blob blob1"></div>  
-<div class="blob blob2"></div>  
-<div class="blob blob3"></div>  
-<nav class="navbar">  
-<div class="logo">  
-    🐺 Vanz Dev  
-</div>  
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & AI - VANZ DEV</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Terpisah -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="dark">
 
-<ul>  
-    <li><a href="#home">Home</a></li>  
-    <li><a href="#skills">Skills</a></li>  
-    <li><a href="#social">Social</a></li>  
-    <li><a href="#project">Project</a></li>  
-    <li><a href="#ai">AI</a></li>  
-</ul>
-
-</nav>  
-<section id="home" class="hero">  
-<div class="hero-content">  
-    <div class="avatar-box">  
-        <img  
-        src="img/furry.png"  
-        alt="Furry Avatar">  
-    </div>  
-
-    <div class="badge">  
-        🐾 Furry Developer  
-    </div>  
-
-    <h1>  
-        Vanz Yang Katanya  
-        <span>Developer</span>  
-    </h1>  
-
-    <p id="typing-text"></p>  
-
-    <div class="hero-buttons">  
-        <a  
-        href="#project"  
-        class="btn-main">  
-            View Projects  
-        </a>  
-        <a  
-        href="#ai"  
-        class="btn-outline">  
-            Furry AI  
-        </a>  
-    </div>  
-
-    <!-- Bagian cerita asal mula kamu -->
-    <div class="about-story" style="margin-top: 40px; text-align: center; max-width: 600px; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
-        <h2 style="font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-weight: 600;">Awal Mulanya Kink Vanz</h2>
-        <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6; font-weight: 300;">
-            Halo! kenalin gw vanz, ya banyak yang panggil gw ino sih, gatau kenapa, btw gw awal mulanya gw tertarik ama dunia per kodingan ini, karena awalnya gw coba coba buat lua, belajar buat html, meningkat lagi ke JavaScript, by the way, gw asal medan yang dijuluki "rayap besi" 😹
-        </p>
+    <!-- Loading Screen Kubus -->
+    <div id="loading-screen">
+        <div class="cube-wrapper">
+            <div class="cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+        </div>
+        <div class="loading-text">VANZ DEV</div>
+        <div class="loading-sub">loading experience ...</div>
     </div>
-</div>
-</section>  
 
-<section id="skills" class="section">  
-<h2>My Skills</h2>  
+    <!-- Top Navigation & Controls -->
+    <div class="top-controls">
+        <nav class="nav-menu">
+            <button class="nav-btn active" id="btn-home">Home</button>
+            <button class="nav-btn" id="btn-ai">VanzZ Ai</button>
+        </nav>
+        <button class="theme-toggle" id="theme-btn" title="Ubah Tema">
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </div>
 
-<div class="skill-card">  
-    <div class="skill-top">  
-        <span>HTML</span>  
-        <span>87%</span>  
-    </div>  
-    <div class="progress">  
-        <div class="fill html"></div>  
-    </div>  
-</div>  
+    <!-- =============== HALAMAN HOME =============== -->
+    <div class="container page-section active" id="page-home">
+        <!-- Header Profile -->
+        <header class="profile-header">
+            <!-- Menghubungkan langsung ke logo.png -->
+            <img src="logo.png" alt="Logo Vanz" class="profile-logo" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150'">
+            <div class="profile-name">
+                Vanz Baik <i class="fa-solid fa-circle-check verified-badge"></i>
+            </div>
+        </header>
 
-<div class="skill-card">  
-    <div class="skill-top">  
-        <span>JavaScript</span>  
-        <span>97%</span>  
-    </div>  
-    <div class="progress">  
-        <div class="fill js"></div>  
-    </div>  
-</div>  
+        <!-- Tentang/Manifesto -->
+        <section class="section">
+            <h2 class="section-title">Awal mula kink vanz</h2>
+            <div class="about-text">
+                halo! perkenalkan nama gw vanz, developer asal medan yang ga terkenal, awal mula gw masuk dunia perkodingan ini, gw belajar buat lua, buat apa? buat exploit di roblox dong, selesai di lua, gw lanjut ke JavaScript dan gw bukan full stack developer ya! gw dan lanjut lagi ke html!
+            </div>
+        </section>
 
-<div class="skill-card">  
-    <div class="skill-top">  
-        <span>Lua</span>  
-        <span>89%</span>  
-    </div>  
-    <div class="progress">  
-        <div class="fill lua"></div>  
-    </div>  
-</div>
-</section>  
+        <!-- Interactive Card Name Tag Sandbox -->
+        <section class="section">
+            <h2 class="section-title">Interactive ID Badge</h2>
+            <div class="nametag-sandbox" id="sandbox">
+                <div class="sandbox-hint"><i class="fa-solid fa-hand-pointer"></i> Klik & geser kartu</div>
+                
+                <div class="nametag-container" id="draggable-tag">
+                    <div class="nametag-lanyard"><div class="nametag-clip"></div></div>
+                    <div class="nametag-card">
+                        <div class="nametag-id">ID · 001 / VB '26</div>
+                        <!-- Menghubungkan langsung ke vanz.png -->
+                        <img src="vanz.png" alt="Vanz Photo" class="nametag-avatar" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=200'">
+                        <div class="nametag-title">Vanz Baik</div>
+                        <div class="nametag-role">Developer</div>
+                        <hr class="nametag-divider">
+                        <div class="nametag-status"><span class="status-dot"></span> Available</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="social" class="section">  
-<h2>Social Media</h2>  
+        <!-- Social Media -->
+        <section class="section">
+            <h2 class="section-title">Social Media</h2>
+            <div class="social-list">
+                <div class="social-card">
+                    <div class="social-info"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></div>
+                    <span class="social-handle">ikyy.ikyy459</span>
+                </div>
+                <a href="https://t.me/RenSiSell" target="_blank" class="social-card">
+                    <div class="social-info"><i class="fa-brands fa-telegram"></i><span>Telegram</span></div>
+                    <div class="flex-center">
+                        <span class="social-handle">t.me/RenSiSell</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-<div class="social-grid">  
-    <div class="social-card">  
-        <h3>TikTok</h3>  
-        <p>@ikyy.ikyy459</p>  
-    </div>  
-    <div class="social-card">  
-        <h3>Telegram</h3>  
-        <p>t.me/RenSiSell</p>  
-    </div>  
-</div>
-</section>  
+        <!-- Whatsapp -->
+        <section class="section">
+            <h2 class="section-title">Whatsapp</h2>
+            <div class="social-list">
+                <a href="https://wa.me/6285122090376" target="_blank" class="social-card">
+                    <div class="social-info"><i class="fa-brands fa-whatsapp"></i><span>Nomor Vanz</span></div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+                </a>
+            </div>
+        </section>
+    </div>
 
-<section class="section">  
-<h2>Nomor Dev 🤓</h2>  
-<a  
-href="https://wa.me/6285122090376"  
-target="_blank"  
-class="wa-button">  
-    WhatsApp Developer  
-</a>
-</section>  
+    <!-- =============== HALAMAN AI =============== -->
+    <div class="container page-section" id="page-ai">
+        <header class="profile-header">
+            <div class="ai-avatar-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="profile-name">VanzZ Ai</div>
+            <p style="color: var(--sub-text); margin-top: 5px; font-size: 14px;">Asisten AI Pintar milik Vanz</p>
+        </header>
 
-<section id="project" class="section">  
-<h2>Project Website</h2>  
+        <section class="section">
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box">
+                    <div class="chat-msg bot">Halo! Gw VanzZ Ai, ada yang bisa gw bantu hari ini?</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Tanyakan sesuatu pada VanzZ Ai...">
+                    <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<div class="project-grid">  
-    <div class="project-card">  
-        <h3>Obfuscator Lua</h3>  
-        <p>Advanced Lua Obfuscator</p>  
-        <a href="https://vanz-obfuscatorr.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-
-    <div class="project-card">  
-        <h3>Website Jualan</h3>  
-        <p>Toko jualan ptero,dll</p>  
-        <a href="https://sawit-storee.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-
-    <div class="project-card">  
-        <h3>Website Java Obf</h3>  
-        <p>Javascript Obfuscator</p>  
-        <a href="https://vanz-java-obfuscator.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-
-    <div class="project-card">  
-        <h3>HTML Obfus</h3>  
-        <p>Cara cepat buat jaga HTML dari maling</p>  
-        <a href="https://vanz-html-obf.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-
-    <div class="project-card">  
-        <h3>Tiktok Downloader</h3>  
-        <p>Downloader tiktok</p>  
-        <a href="https://vanz-tt-downloader.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-
-    <div class="project-card">  
-        <h3>Moon AI</h3>  
-        <p>AI curhat biar ga kesepian lu</p>  
-        <a href="https://moonai-temanmu.netlify.app" target="_blank">Visit Website</a>  
-    </div>  
-</div>
-</section>  
-
-<section id="ai" class="section">  
-<h2>🐺 Vanz × Furry AI</h2>  
-
-<div class="ai-container">  
-    <div id="chatBox" class="chat-box">  
-        <div class="ai-message">  
-            Halo! Aku Vanz × Furry AI 🐾  
-        </div>  
-    </div>  
-    <form id="chatForm">  
-        <input  
-        type="text"  
-        id="prompt"  
-        placeholder="Tanyakan sesuatu..."  
-        autocomplete="off">  
-        <button type="submit">Kirim</button>  
-    </form>  
-</div>
-</section>  
-
-<footer>  
-© 2026 Vanz Yang Katanya Dev
-</footer>  
-<script src="script/script.js"></script>  
-</body>  
+    <!-- JS -->
+    <script src="script/script.js"></script>
+</body>
 </html>
